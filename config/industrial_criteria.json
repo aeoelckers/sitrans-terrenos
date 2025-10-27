@@ -1,0 +1,16 @@
+{
+  "preferred_macrozones": ["Zona Centro", "Zona Sur"],
+  "preferred_regions": ["Metropolitana de Santiago", "Los Lagos"],
+  "target_zonings": ["industrial", "industrial mixto", "industrial exclusivo"],
+  "min_area_hectares": 1.5,
+  "max_total_price": 6000000000,
+  "max_price_per_m2": 260000,
+  "required_services": ["electricidad", "agua potable"],
+  "preferred_services": ["gas natural", "fibra óptica"],
+  "desired_property_types": ["terreno", "lote", "sitio"],
+  "transport_importance": {
+    "carretera": 0.5,
+    "ferrocarril": 0.2,
+    "aeropuerto": 0.3
+  }
+}

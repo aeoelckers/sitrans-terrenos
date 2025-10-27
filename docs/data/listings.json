@@ -1,0 +1,400 @@
+[
+  {
+    "id": "CL-T-001",
+    "name": "Parque Logístico Arica",
+    "region": "Arica y Parinacota",
+    "province": "Arica",
+    "commune": "Arica",
+    "locality": "Valle de Lluta",
+    "property_type": "terreno",
+    "area_m2": 28000,
+    "price_per_m2": 98000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 1.1,
+      "puerto_km": 7.2
+    },
+    "topography": "plano",
+    "notes": "Acceso directo a Ruta 5 y proximidad al puerto de Arica",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Arica+Arica+y+Parinacota+Chile"
+  },
+  {
+    "id": "CL-T-002",
+    "name": "Nodo Industrial Alto Hospicio",
+    "region": "Tarapacá",
+    "province": "Iquique",
+    "commune": "Alto Hospicio",
+    "locality": "Sector La Negra",
+    "property_type": "terreno",
+    "area_m2": 32000,
+    "price_per_m2": 112000,
+    "zoning": "industrial mixto",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural"
+    ],
+    "transport": {
+      "carretera": "Ruta A-16",
+      "distancia_km": 0.9,
+      "puerto_km": 14.0
+    },
+    "topography": "suave lomaje",
+    "notes": "Apto para bodegas con conexión directa a Iquique",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Alto+Hospicio+Tarapac%C3%A1+Chile"
+  },
+  {
+    "id": "CL-T-003",
+    "name": "Parque Industrial La Negra",
+    "region": "Antofagasta",
+    "province": "Antofagasta",
+    "commune": "Antofagasta",
+    "locality": "La Negra",
+    "property_type": "terreno",
+    "area_m2": 35000,
+    "price_per_m2": 190000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural",
+      "drenaje"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 0.8,
+      "ferrocarril": true
+    },
+    "topography": "plano",
+    "notes": "Terreno consolidado con acceso directo a Ruta 5 y ramal ferroviario",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Antofagasta+Antofagasta+Chile"
+  },
+  {
+    "id": "CL-T-004",
+    "name": "Suelo Solar Copiapó",
+    "region": "Atacama",
+    "province": "Copiapó",
+    "commune": "Copiapó",
+    "locality": "Paipote",
+    "property_type": "terreno",
+    "area_m2": 42000,
+    "price_per_m2": 78000,
+    "zoning": "industrial liviano",
+    "services": [
+      "electricidad",
+      "agua potable"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 1.5,
+      "ferrocarril": true
+    },
+    "topography": "plano",
+    "notes": "Ideal para proyectos energéticos y centros de mantenimiento",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Copiap%C3%B3+Atacama+Chile"
+  },
+  {
+    "id": "CL-T-005",
+    "name": "Parcela Agroindustrial Ovalle",
+    "region": "Coquimbo",
+    "province": "Limarí",
+    "commune": "Ovalle",
+    "locality": "Tuquí",
+    "property_type": "parcela",
+    "area_m2": 60000,
+    "price_per_m2": 85000,
+    "zoning": "agroindustrial",
+    "services": [
+      "electricidad",
+      "pozo",
+      "agua de riego"
+    ],
+    "transport": {
+      "carretera": "Ruta D-43",
+      "distancia_km": 2.5
+    },
+    "topography": "suave lomaje",
+    "notes": "Cuenta con derechos de agua inscritos y factibilidad trifásica",
+    "url": "https://www.portalinmobiliario.com/venta?q=parcela+Ovalle+Coquimbo+Chile"
+  },
+  {
+    "id": "CL-T-006",
+    "name": "Puerto San Antonio Logístico",
+    "region": "Valparaíso",
+    "province": "San Antonio",
+    "commune": "San Antonio",
+    "locality": "Barrio Industrial",
+    "property_type": "sitio",
+    "area_m2": 27000,
+    "price_per_m2": 205000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "drenaje",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 78",
+      "distancia_km": 1.0,
+      "puerto_km": 3.2
+    },
+    "topography": "plano",
+    "notes": "Ubicación estratégica frente al principal puerto de la zona central",
+    "url": "https://www.portalinmobiliario.com/venta?q=sitio+San+Antonio+Valpara%C3%ADso+Chile"
+  },
+  {
+    "id": "CL-T-007",
+    "name": "Centro Logístico Pudahuel",
+    "region": "Metropolitana de Santiago",
+    "province": "Santiago",
+    "commune": "Pudahuel",
+    "locality": "Ciudad de los Valles",
+    "property_type": "lote",
+    "area_m2": 22000,
+    "price_per_m2": 260000,
+    "zoning": "industrial exclusivo",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "fibra óptica",
+      "gas natural"
+    ],
+    "transport": {
+      "carretera": "Ruta 68",
+      "distancia_km": 1.2,
+      "aeropuerto_km": 9.5
+    },
+    "topography": "plano",
+    "notes": "Ideal para bodegaje con cercanía al aeropuerto AMB",
+    "url": "https://www.portalinmobiliario.com/venta?q=lote+Pudahuel+Metropolitana+de+Santiago+Chile"
+  },
+  {
+    "id": "CL-T-008",
+    "name": "Parque Industrial Rancagua",
+    "region": "Libertador General Bernardo O'Higgins",
+    "province": "Cachapoal",
+    "commune": "Rancagua",
+    "locality": "Sector Norte",
+    "property_type": "terreno",
+    "area_m2": 25000,
+    "price_per_m2": 165000,
+    "zoning": "industrial mixto",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 0.6,
+      "ferrocarril": true
+    },
+    "topography": "plano",
+    "notes": "Cercano a centros de distribución y mano de obra calificada",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Rancagua+Libertador+General+Bernardo+O%27Higgins+Chile"
+  },
+  {
+    "id": "CL-T-009",
+    "name": "Plataforma Logística Talca",
+    "region": "Maule",
+    "province": "Talca",
+    "commune": "Talca",
+    "locality": "Variante Oriente",
+    "property_type": "sitio",
+    "area_m2": 31000,
+    "price_per_m2": 118000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 0.4,
+      "ferrocarril": true
+    },
+    "topography": "plano",
+    "notes": "Frente a enlace Ruta 5 con alta conectividad hacia norte y sur",
+    "url": "https://www.portalinmobiliario.com/venta?q=sitio+Talca+Maule+Chile"
+  },
+  {
+    "id": "CL-T-010",
+    "name": "Campus Industrial Chillán",
+    "region": "Ñuble",
+    "province": "Diguillín",
+    "commune": "Chillán",
+    "locality": "Camino a Pinto",
+    "property_type": "terreno",
+    "area_m2": 26000,
+    "price_per_m2": 102000,
+    "zoning": "industrial liviano",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "drenaje"
+    ],
+    "transport": {
+      "carretera": "Ruta N-59-O",
+      "distancia_km": 1.3
+    },
+    "topography": "plano",
+    "notes": "Cuenta con factibilidad eléctrica de media tensión",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Chill%C3%A1n+%C3%91uble+Chile"
+  },
+  {
+    "id": "CL-T-011",
+    "name": "HUB Logístico Talcahuano",
+    "region": "Biobío",
+    "province": "Concepción",
+    "commune": "Talcahuano",
+    "locality": "Parque Industrial Coronel",
+    "property_type": "terreno",
+    "area_m2": 38000,
+    "price_per_m2": 142000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 160",
+      "distancia_km": 0.5,
+      "puerto_km": 6.5
+    },
+    "topography": "plano",
+    "notes": "Excelente conectividad a puertos y aeropuerto Carriel Sur",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Talcahuano+Biob%C3%ADo+Chile"
+  },
+  {
+    "id": "CL-T-012",
+    "name": "Terreno Turístico Pucón",
+    "region": "La Araucanía",
+    "province": "Cautín",
+    "commune": "Pucón",
+    "locality": "Camino al Volcán",
+    "property_type": "terreno",
+    "area_m2": 15000,
+    "price_per_m2": 135000,
+    "zoning": "turístico",
+    "services": [
+      "electricidad",
+      "agua potable"
+    ],
+    "transport": {
+      "carretera": "Ruta 199",
+      "distancia_km": 1.7
+    },
+    "topography": "pendiente suave",
+    "notes": "Vistas despejadas al volcán y cercanía a centros turísticos",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Puc%C3%B3n+La+Araucan%C3%ADa+Chile"
+  },
+  {
+    "id": "CL-T-013",
+    "name": "Corredor Logístico Valdivia",
+    "region": "Los Ríos",
+    "province": "Valdivia",
+    "commune": "Valdivia",
+    "locality": "Paillaco Norte",
+    "property_type": "terreno",
+    "area_m2": 29000,
+    "price_per_m2": 99000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 0.7
+    },
+    "topography": "plano",
+    "notes": "Nodo logístico entre Los Ríos y Los Lagos",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Valdivia+Los+R%C3%ADos+Chile"
+  },
+  {
+    "id": "CL-T-014",
+    "name": "Megapredio Logístico Puerto Montt",
+    "region": "Los Lagos",
+    "province": "Llanquihue",
+    "commune": "Puerto Montt",
+    "locality": "La Vara",
+    "property_type": "terreno",
+    "area_m2": 120000,
+    "price_per_m2": 95000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural",
+      "fibra óptica"
+    ],
+    "transport": {
+      "carretera": "Ruta 5",
+      "distancia_km": 0.3,
+      "aeropuerto_km": 11.0
+    },
+    "topography": "plano",
+    "notes": "Apto para centro de distribución con acceso a Puerto Montt y aeropuerto",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Puerto+Montt+Los+Lagos+Chile"
+  },
+  {
+    "id": "CL-T-015",
+    "name": "Parque Empresarial Coyhaique",
+    "region": "Aysén del General Carlos Ibáñez del Campo",
+    "province": "Coyhaique",
+    "commune": "Coyhaique",
+    "locality": "El Claro",
+    "property_type": "parcela",
+    "area_m2": 24000,
+    "price_per_m2": 72000,
+    "zoning": "industrial liviano",
+    "services": [
+      "electricidad",
+      "agua potable"
+    ],
+    "transport": {
+      "carretera": "Ruta 7",
+      "distancia_km": 2.2,
+      "aeropuerto_km": 53.0
+    },
+    "topography": "suave lomaje",
+    "notes": "Ideal para operaciones logísticas y servicios a la Carretera Austral",
+    "url": "https://www.portalinmobiliario.com/venta?q=parcela+Coyhaique+Ays%C3%A9n+del+General+Carlos+Ib%C3%A1%C3%B1ez+del+Campo+Chile"
+  },
+  {
+    "id": "CL-T-016",
+    "name": "Zona Franca Punta Arenas",
+    "region": "Magallanes y de la Antártica Chilena",
+    "province": "Magallanes",
+    "commune": "Punta Arenas",
+    "locality": "Sector Norte",
+    "property_type": "terreno",
+    "area_m2": 33000,
+    "price_per_m2": 88000,
+    "zoning": "industrial",
+    "services": [
+      "electricidad",
+      "agua potable",
+      "gas natural"
+    ],
+    "transport": {
+      "carretera": "Ruta 9",
+      "distancia_km": 1.8,
+      "puerto_km": 5.0
+    },
+    "topography": "plano",
+    "notes": "Ubicado junto a Zona Franca con incentivos tributarios",
+    "url": "https://www.portalinmobiliario.com/venta?q=terreno+Punta+Arenas+Magallanes+y+de+la+Ant%C3%A1rtica+Chilena+Chile"
+  }
+]

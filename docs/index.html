@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Buscador de Terrenos de Sitrans</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Buscador de terrenos en Chile</h1>
+        <p>
+          Ejecuta el agente directamente desde GitHub Pages o cualquier hosting estático y comparte los resultados con tu
+          equipo sin instalar dependencias adicionales.
+        </p>
+      </header>
+
+      <section class="summary">
+        <p>
+          Filtra terrenos por región, comuna, tipo de predio, superficie mínima, servicios y precio máximo. Al hacer clic en
+          <strong>Buscar</strong> se listarán los mejores resultados ordenados por puntaje y con un enlace directo a la publicación.
+        </p>
+        <p>El inventario activo se carga desde <a data-current-source href="#">data/listings.json</a>.</p>
+      </section>
+
+      <section class="data-source">
+        <h2>Inventario de terrenos</h2>
+        <p>
+          Publica un archivo JSON accesible en línea y úsalo con el parámetro
+          <code>?data=https://tu-dominio/listados.json</code> o carga un inventario directamente desde tu computador.
+        </p>
+        <label class="file-input" for="inventory-upload">
+          <span>Selecciona un archivo JSON local</span>
+          <input type="file" id="inventory-upload" accept="application/json" />
+        </label>
+        <p class="hint">Los archivos locales se procesan en tu navegador y no se suben a Internet.</p>
+      </section>
+
+      <section class="feedback" aria-live="polite" data-feedback></section>
+
+      <form id="search-form">
+        <fieldset>
+          <label>
+            Región
+            <select id="region" name="region"></select>
+          </label>
+          <label>
+            Comuna
+            <select id="commune" name="commune"></select>
+          </label>
+          <label>
+            Tipo de predio
+            <select id="property_type" name="property_type"></select>
+          </label>
+          <label>
+            Superficie mínima
+            <div style="display: flex; gap: 0.5rem">
+              <input type="number" min="0" step="0.01" name="min_area" placeholder="Ej: 5000" />
+              <select name="area_unit" aria-label="Unidad de superficie">
+                <option value="m2">m²</option>
+                <option value="ha">hectáreas</option>
+              </select>
+            </div>
+          </label>
+          <label>
+            Servicios obligatorios
+            <input type="text" name="required_services" placeholder="agua, electricidad" />
+          </label>
+          <label>
+            Servicios preferidos
+            <input type="text" name="preferred_services" placeholder="fibra óptica" />
+          </label>
+          <label>
+            Precio máximo total (CLP)
+            <input type="number" min="0" step="1" name="max_price" placeholder="Ej: 2000000000" />
+          </label>
+          <label>
+            Precio máximo por m² (CLP)
+            <input type="number" min="0" step="1" name="max_price_m2" placeholder="Ej: 250000" />
+          </label>
+          <label>
+            Cantidad de resultados
+            <input type="number" min="1" step="1" name="top" value="5" />
+          </label>
+        </fieldset>
+        <button type="submit">Buscar</button>
+      </form>
+
+      <section id="results" aria-live="polite"></section>
+    </main>
+    <script src="app.js" defer></script>
+  </body>
+</html>
