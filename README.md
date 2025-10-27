@@ -71,9 +71,35 @@ carpeta `docs/`. Hay dos formas sencillas de hacerlo:
    - Si deseas reemplazar el inventario por uno propio, modifica
      `docs/data/listings.json` desde la interfaz web de GitHub (**Add file → Edit
      file**), guarda los cambios y repite el proceso de publicación.
-   - Para probar inventarios externos sin hacer commits, añade el parámetro
-     `?data=` en la URL con la dirección de tu JSON público o utiliza el botón
-     para cargar un archivo local.
+ - Para probar inventarios externos sin hacer commits, añade el parámetro
+   `?data=` en la URL con la dirección de tu JSON público o utiliza el botón
+   para cargar un archivo local.
+
+### ¿GitHub indica que hay conflictos al subir?
+
+Si ves el mensaje **"This branch has conflicts that must be resolved"** al
+intentar crear un pull request o activar GitHub Pages, significa que los
+archivos de tu rama (`README.md`, `docs/app.js`, `docs/data/listings.json`,
+`docs/index.html`, etc.) difieren de los que ya existen en GitHub. Para
+solucionarlo tienes dos alternativas:
+
+1. **Resolver desde la web (sin instalar nada):**
+   - Abre el mensaje de conflicto y pulsa **Resolve conflicts**.
+   - GitHub mostrará cada archivo dividido en secciones `<<<<<<<`, `=======`,
+     `>>>>>>>`. Conserva solo la versión correcta (normalmente la que traes de
+     este repositorio) y elimina las marcas.
+   - Al terminar, pulsa **Mark as resolved** y luego **Commit merge**.
+
+2. **Actualizar tu copia local antes de subir:**
+   - Descarga nuevamente este proyecto (ZIP) o sincroniza tu clon con
+     `git pull origin main` (ajusta `main` al nombre de tu rama).
+   - Reemplaza los archivos en conflicto por los que acabas de bajar.
+   - Vuelve a subirlos con **Add file → Upload files** o, si usas Git en la
+     terminal, ejecuta `git add .`, `git commit` y `git push`.
+
+> ✅ Una vez resueltos los conflictos, vuelve a la pestaña **Pages** y asegúrate
+> de que siga seleccionada la carpeta `/docs`. GitHub generará nuevamente el
+> sitio estático sin necesidad de pasos adicionales.
 
 ## Requisitos
 
