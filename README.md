@@ -71,9 +71,35 @@ carpeta `docs/`. Hay dos formas sencillas de hacerlo:
    - Si deseas reemplazar el inventario por uno propio, modifica
      `docs/data/listings.json` desde la interfaz web de GitHub (**Add file → Edit
      file**), guarda los cambios y repite el proceso de publicación.
-   - Para probar inventarios externos sin hacer commits, añade el parámetro
-     `?data=` en la URL con la dirección de tu JSON público o utiliza el botón
-     para cargar un archivo local.
+ - Para probar inventarios externos sin hacer commits, añade el parámetro
+   `?data=` en la URL con la dirección de tu JSON público o utiliza el botón
+   para cargar un archivo local.
+
+### ¿GitHub indica que hay conflictos al subir?
+
+Si ves el mensaje **"This branch has conflicts that must be resolved"** al
+intentar crear un pull request o activar GitHub Pages, significa que los
+archivos de tu rama (`README.md`, `docs/app.js`, `docs/data/listings.json`,
+`docs/index.html`, etc.) difieren de los que ya existen en GitHub. Para
+solucionarlo tienes dos alternativas:
+
+1. **Resolver desde la web (sin instalar nada):**
+   - Abre el mensaje de conflicto y pulsa **Resolve conflicts**.
+   - GitHub mostrará cada archivo dividido en secciones `<<<<<<<`, `=======`,
+     `>>>>>>>`. Conserva solo la versión correcta (normalmente la que traes de
+     este repositorio) y elimina las marcas.
+   - Al terminar, pulsa **Mark as resolved** y luego **Commit merge**.
+
+2. **Actualizar tu copia local antes de subir:**
+   - Descarga nuevamente este proyecto (ZIP) o sincroniza tu clon con
+     `git pull origin main` (ajusta `main` al nombre de tu rama).
+   - Reemplaza los archivos en conflicto por los que acabas de bajar.
+   - Vuelve a subirlos con **Add file → Upload files** o, si usas Git en la
+     terminal, ejecuta `git add .`, `git commit` y `git push`.
+
+> ✅ Una vez resueltos los conflictos, vuelve a la pestaña **Pages** y asegúrate
+> de que siga seleccionada la carpeta `/docs`. GitHub generará nuevamente el
+> sitio estático sin necesidad de pasos adicionales.
 
 ## Requisitos
 
@@ -115,7 +141,7 @@ carpeta `docs/`. Hay dos formas sencillas de hacerlo:
    ```
 
    Abre la primera URL en el mismo computador o cualquiera de las direcciones
-   locales para filtrar terrenos por macrozona, región, tipo de predio,
+   locales para filtrar terrenos por región, comuna, tipo de predio,
    superficie mínima en m² o hectáreas, precios máximos y servicios requeridos.
    Los resultados muestran enlaces directos a las publicaciones configuradas en
    el inventario.
@@ -143,7 +169,7 @@ selecciona la carpeta `docs/` del branch principal. El flujo recomendado es:
 2. Espera a que GitHub publique el sitio (puede tardar un par de minutos). El
    enlace tendrá la forma `https://tu-usuario.github.io/sitrans-terrenos/`.
 3. Abre la URL desde cualquier dispositivo. La interfaz permite filtrar por
-   macrozona, región, tipo de predio, superficie mínima (m² o hectáreas),
+   región, comuna, tipo de predio, superficie mínima (m² o hectáreas),
    servicios obligatorios o preferidos y precios máximos.
 4. Para probar otro inventario sin volver a desplegar, añade el parámetro
    `?data=` en la URL apuntando a tu JSON público, por ejemplo:
@@ -192,7 +218,7 @@ selecciona la carpeta `docs/` del branch principal. El flujo recomendado es:
 5. Personalizar los criterios copiando el archivo `config/industrial_criteria.json`
    y ajustando los parámetros disponibles para Chile:
 
-   - `preferred_macrozones` y `preferred_regions` para acotar la búsqueda geográfica.
+   - `preferred_regions`, `preferred_communes` y (opcional) `preferred_macrozones` para acotar la búsqueda geográfica.
    - `target_zonings`: usos de suelo válidos (industrial, agroindustrial, turístico, etc.).
    - `min_area_m2` o `min_area_hectares`, junto con `max_total_price` y `max_price_per_m2`.
    - `desired_property_types` para priorizar terrenos, lotes, sitios o parcelas.
@@ -250,6 +276,7 @@ caso.
 {
   "preferred_macrozones": ["Zona Centro"],
   "preferred_regions": ["Metropolitana de Santiago"],
+  "preferred_communes": ["Pudahuel"],
   "target_zonings": ["industrial", "industrial mixto"],
   "min_area_hectares": 2.0,
   "max_total_price": 2500000000,

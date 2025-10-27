@@ -36,6 +36,8 @@ let searchForm = null;
 let statusElement = null;
 let resultsContainer = null;
 let sourceIndicator = null;
+let communesByRegion = new Map();
+let allCommunes = new Set();
 
 function getDataUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -112,6 +114,11 @@ function normalizeListing(item, index) {
       ? item.transport
       : {};
 
+  let url = toStringOrEmpty(item.url).trim();
+  if (url && !/^https?:\/\//i.test(url)) {
+    url = `https://${url.replace(/^\/+/, '')}`;
+  }
+
   const listing = {
     id: toStringOrEmpty(item.id),
     name: toStringOrEmpty(item.name),
@@ -127,7 +134,7 @@ function normalizeListing(item, index) {
     transport,
     topography: toStringOrEmpty(item.topography),
     notes: toStringOrEmpty(item.notes),
-    url: toStringOrEmpty(item.url)
+    url
   };
 
   return {
@@ -142,6 +149,24 @@ function prepareListings(data) {
     throw new Error('El archivo JSON debe contener una lista de terrenos.');
   }
   return data.map((item, index) => normalizeListing(item, index));
+}
+
+function buildGeographyLookups() {
+  communesByRegion = new Map();
+  allCommunes = new Set();
+  listings.forEach((item) => {
+    if (item.region) {
+      if (!communesByRegion.has(item.region)) {
+        communesByRegion.set(item.region, new Set());
+      }
+      if (item.commune) {
+        communesByRegion.get(item.region).add(item.commune);
+      }
+    }
+    if (item.commune) {
+      allCommunes.add(item.commune);
+    }
+  });
 }
 
 function updateSourceIndicator(label, href, isLocal) {
@@ -181,27 +206,32 @@ function hydrateFilters() {
 
   const params = new URLSearchParams(window.location.search);
 
-  const macroSelect = searchForm.querySelector('#macrozona');
   const regionSelect = searchForm.querySelector('#region');
+  const communeSelect = searchForm.querySelector('#commune');
   const typeSelect = searchForm.querySelector('#property_type');
 
-  const macrozones = Array.from(new Set(listings.map((item) => item.macrozone))).sort();
-  const regions = Array.from(new Set(listings.map((item) => item.region))).sort();
-  const propertyTypes = Array.from(new Set(listings.map((item) => item.property_type))).sort();
+  const regions = Array.from(new Set(listings.map((item) => item.region).filter(Boolean)))
+    .sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
+  const propertyTypes = Array.from(
+    new Set(listings.map((item) => item.property_type).filter(Boolean))
+  ).sort((a, b) => a.localeCompare(b, 'es', { sensitivity: 'base' }));
 
-  const macroValue = params.get('macrozona') || (macroSelect ? macroSelect.value : '');
   const regionValue = params.get('region') || (regionSelect ? regionSelect.value : '');
+  const communeValue = params.get('commune') || (communeSelect ? communeSelect.value : '');
   const typeValue = params.get('property_type') || (typeSelect ? typeSelect.value : '');
 
-  populateOptions(macroSelect, macrozones, macroValue);
   populateOptions(regionSelect, regions, regionValue);
+  populateCommuneOptions(regionValue, communeValue);
   populateOptions(typeSelect, propertyTypes, typeValue);
 }
 
 function populateOptions(select, values, previousValue = '') {
   if (!select) return;
   select.innerHTML = '<option value="">Todas</option>';
-  values.forEach((value) => {
+  const sorted = Array.from(values).sort((a, b) =>
+    a.localeCompare(b, 'es', { sensitivity: 'base' })
+  );
+  sorted.forEach((value) => {
     const option = document.createElement('option');
     option.value = value;
     option.textContent = value;
@@ -214,11 +244,24 @@ function populateOptions(select, values, previousValue = '') {
   }
 }
 
+function populateCommuneOptions(region, previousValue = '') {
+  if (!searchForm) return;
+  const communeSelect = searchForm.querySelector('#commune');
+  if (!communeSelect) return;
+  let communes = [];
+  if (region && communesByRegion.has(region)) {
+    communes = Array.from(communesByRegion.get(region));
+  } else {
+    communes = Array.from(allCommunes);
+  }
+  populateOptions(communeSelect, communes, previousValue);
+}
+
 function readCriteria(form) {
   const formData = new FormData(form);
   const criteria = {
-    preferred_macrozones: readList(formData.get('macrozona')),
     preferred_regions: readList(formData.get('region')),
+    preferred_communes: readList(formData.get('commune')),
     desired_property_types: readList(formData.get('property_type')),
     min_area_m2: parseFloat(formData.get('min_area')) || 0,
     min_area_hectares: 0,
@@ -259,15 +302,15 @@ function areaThreshold(criteria) {
 }
 
 function matches(listing, criteria) {
-  if (criteria.preferred_macrozones.length) {
-    const set = new Set(criteria.preferred_macrozones.map((value) => value.toLowerCase()));
-    if (!set.has(listing.macrozone.toLowerCase())) {
-      return false;
-    }
-  }
   if (criteria.preferred_regions.length) {
     const set = new Set(criteria.preferred_regions.map((value) => value.toLowerCase()));
     if (!set.has(listing.region.toLowerCase())) {
+      return false;
+    }
+  }
+  if (criteria.preferred_communes.length) {
+    const set = new Set(criteria.preferred_communes.map((value) => value.toLowerCase()));
+    if (!set.has(listing.commune.toLowerCase())) {
       return false;
     }
   }
@@ -304,6 +347,7 @@ function scoreListing(listing, criteria) {
     area_ha: listing.area_m2 / 10000,
     precio_total_clp: listing.total_price,
     precio_m2_clp: listing.price_per_m2,
+    commune: listing.commune,
     region: listing.region,
     macrozona: listing.macrozone,
     transporte: listing.transport
@@ -311,21 +355,21 @@ function scoreListing(listing, criteria) {
 
   // ubicación
   let ubicacionValue = 0.7;
-  if (criteria.preferred_regions.length) {
+  if (criteria.preferred_communes.length) {
+    if (criteria.preferred_communes.includes(listing.commune)) {
+      ubicacionValue = 1.0;
+      highlights.ubicacion = 'Comuna preferida';
+    } else {
+      ubicacionValue = 0.3;
+      highlights.ubicacion = 'Comuna alternativa';
+    }
+  } else if (criteria.preferred_regions.length) {
     if (criteria.preferred_regions.includes(listing.region)) {
       ubicacionValue = 1.0;
       highlights.ubicacion = 'Región preferida';
     } else {
       ubicacionValue = 0.4;
       highlights.ubicacion = 'Región alternativa';
-    }
-  } else if (criteria.preferred_macrozones.length) {
-    if (criteria.preferred_macrozones.includes(listing.macrozone)) {
-      ubicacionValue = 0.9;
-      highlights.ubicacion = 'Macrozona preferida';
-    } else {
-      ubicacionValue = 0.5;
-      highlights.ubicacion = 'Macrozona alternativa';
     }
   } else {
     highlights.ubicacion = 'Sin preferencia';
@@ -490,8 +534,8 @@ function performSearch() {
 function restoreLastSearch(form) {
   const params = new URLSearchParams(window.location.search);
   const fields = [
-    'macrozona',
     'region',
+    'commune',
     'property_type',
     'min_area',
     'area_unit',
@@ -514,8 +558,8 @@ function persistSearch(form) {
   const data = new FormData(form);
   const params = new URLSearchParams(window.location.search);
   [
-    'macrozona',
     'region',
+    'commune',
     'property_type',
     'min_area',
     'area_unit',
@@ -557,6 +601,7 @@ function clearDataParam() {
 
 function useListings(data, { label, href, isLocal }) {
   listings = data;
+  buildGeographyLookups();
   hydrateFilters();
   performSearch();
   updateSourceIndicator(label, href, isLocal);
@@ -607,6 +652,13 @@ async function bootstrap() {
   if (!searchForm || !resultsContainer) return;
 
   restoreLastSearch(searchForm);
+
+  const regionSelect = searchForm.querySelector('#region');
+  if (regionSelect) {
+    regionSelect.addEventListener('change', () => {
+      populateCommuneOptions(regionSelect.value, '');
+    });
+  }
 
   searchForm.addEventListener('submit', (event) => {
     event.preventDefault();
